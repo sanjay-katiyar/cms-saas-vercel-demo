@@ -1,0 +1,47 @@
+{
+  "key": "HeroBanner",
+  "displayName": "Hero Banner",
+  "description": "The hero banner block",
+  "baseType": "component",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "Title": {
+      "type": "string",
+      "displayName": "Title",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "ShortDescription": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Short Description",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "Image": {
+      "type": "contentReference",
+      "displayName": "Image",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Media"
+      ],
+      "restrictedTypes": []
+    }
+  }
+}

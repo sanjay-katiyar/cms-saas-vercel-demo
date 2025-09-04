@@ -1,0 +1,4 @@
+fragment HomePageData on HomePage {
+  Title
+  MainContentArea { ...BlockData }
+}

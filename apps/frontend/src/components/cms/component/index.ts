@@ -24,94 +24,99 @@ import ButtonBlockComponent from "./ButtonBlock";
 import ArticleListElementComponent from "./ArticleListElement";
 import ArticleListElementLoader from "./ArticleListElement/loading";
 import ComponentPageFactory from "./Page";
+import TeaserBlockComponent from "./TeaserBlock";
 
 // Prefix entries - if needed
 prefixDictionaryEntries(ComponentPageFactory, "Page");
 
 // Build dictionary
-export const ComponentFactory : ComponentTypeDictionary = [
-    { 
-        type: "VideoElement", 
-        component: VideoElementComponent 
+export const ComponentFactory: ComponentTypeDictionary = [
+    {
+        type: "VideoElement",
+        component: VideoElementComponent
     },
-    { 
-        type: "TextBlock", 
-        component: TextBlockComponent 
+    {
+        type: "TextBlock",
+        component: TextBlockComponent
     },
-    { 
-        type: "TestimonialElement", 
-        component: TestimonialElementComponent 
+    {
+        type: "TestimonialElement",
+        component: TestimonialElementComponent
     },
-    { 
-        type: "RichTextElement", 
-        component: RichTextElementComponent 
+    {
+        type: "RichTextElement",
+        component: RichTextElementComponent
     },
-    { 
-        type: "QuoteBlock", 
-        component: QuoteBlockComponent 
+    {
+        type: "QuoteBlock",
+        component: QuoteBlockComponent
     },
-    { 
-        type: "ParagraphElement", 
-        component: ParagraphElementComponent 
+    {
+        type: "ParagraphElement",
+        component: ParagraphElementComponent
     },
-    { 
-        type: "PageSeoSettings", 
-        component: PageSeoSettingsComponent 
+    {
+        type: "PageSeoSettings",
+        component: PageSeoSettingsComponent
     },
-    { 
-        type: "OdpEmbedBlock", 
-        component: OdpEmbedBlockComponent 
+    {
+        type: "OdpEmbedBlock",
+        component: OdpEmbedBlockComponent
     },
-    { 
-        type: "MenuNavigationBlock", 
-        component: MenuNavigationBlockComponent 
+    {
+        type: "MenuNavigationBlock",
+        component: MenuNavigationBlockComponent
     },
-    { 
-        type: "MegaMenuGroupBlock/mobile", 
-        component: MegaMenuGroupBlockMobileComponent 
+    {
+        type: "MegaMenuGroupBlock/mobile",
+        component: MegaMenuGroupBlockMobileComponent
     },
-    { 
-        type: "MegaMenuGroupBlock", 
-        component: MegaMenuGroupBlockComponent 
+    {
+        type: "MegaMenuGroupBlock",
+        component: MegaMenuGroupBlockComponent
     },
-    { 
-        type: "LayoutSettingsBlock", 
-        component: LayoutSettingsBlockComponent 
+    {
+        type: "LayoutSettingsBlock",
+        component: LayoutSettingsBlockComponent
     },
-    { 
-        type: "ImageElement", 
-        component: ImageElementComponent 
+    {
+        type: "ImageElement",
+        component: ImageElementComponent
     },
-    { 
-        type: "HeroBlock", 
-        component: HeroBlockComponent 
+    {
+        type: "HeroBlock",
+        component: HeroBlockComponent
     },
-    { 
-        type: "HeadingElement", 
-        component: HeadingElementComponent 
+    {
+        type: "HeadingElement",
+        component: HeadingElementComponent
     },
-    { 
-        type: "CTAElement", 
-        component: CTAElementComponent 
+    {
+        type: "CTAElement",
+        component: CTAElementComponent
     },
-    { 
-        type: "ContinueReadingComponent", 
-        component: ContinueReadingComponentComponent 
+    {
+        type: "ContinueReadingComponent",
+        component: ContinueReadingComponentComponent
     },
-    { 
-        type: "ContentRecsElement", 
-        component: ContentRecsElementComponent 
+    {
+        type: "ContentRecsElement",
+        component: ContentRecsElementComponent
     },
-    { 
-        type: "CarouselBlock", 
-        component: CarouselBlockComponent 
+    {
+        type: "CarouselBlock",
+        component: CarouselBlockComponent
     },
-    { 
-        type: "ButtonBlock", 
-        component: ButtonBlockComponent 
+    {
+        type: "ButtonBlock",
+        component: ButtonBlockComponent
     },
-    { 
-        type: "ArticleListElement", 
+    {
+        type: "TeaserBlock",
+        component: TeaserBlockComponent
+    },
+    {
+        type: "ArticleListElement",
         component: ArticleListElementComponent,
         useSuspense: true,
         loader: ArticleListElementLoader
@@ -123,10 +128,9 @@ export const ComponentFactory : ComponentTypeDictionary = [
 export default ComponentFactory;
 
 // Helper functions
-function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string) : ComponentTypeDictionary
-{
+function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string): ComponentTypeDictionary {
     list.forEach((component, idx, dictionary) => {
-        dictionary[idx].type = typeof component.type == 'string' ? prefix + "/" + component.type : [ prefix, ...component.type ]
+        dictionary[idx].type = typeof component.type == 'string' ? prefix + "/" + component.type : [prefix, ...component.type]
     });
     return list;
 }

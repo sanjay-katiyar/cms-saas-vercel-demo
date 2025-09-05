@@ -1,0 +1,6 @@
+fragment TeaserBlockData on TeaserBlock {
+  heading
+  shortDescription: description
+  image { ...ReferenceData }
+  link { ...LinkData }
+}

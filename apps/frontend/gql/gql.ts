@@ -25,6 +25,7 @@ type Documents = {
     "fragment ContinueReadingComponentData on ContinueReadingComponent {\n  topline\n  shared\n  heading\n  content {\n    ...IContentData\n    ...BlockData\n  }\n}": typeof types.ContinueReadingComponentDataFragmentDoc,
     "query getSharedContinueReading($locale: [Locales]) {\n  ContinueReadingComponent(where: {shared: {eq: true}}, locale: $locale) {\n    total\n    item {\n      ...IContentData\n      ...ContinueReadingComponentData\n    }\n  }\n}": typeof types.getSharedContinueReadingDocument,
     "fragment HeadingElementData on HeadingElement {\n  headingText\n}": typeof types.HeadingElementDataFragmentDoc,
+    "fragment HeroBannerData on HeroBanner {\n  Title\n  ShortDescription\n  Image {\n    ...ReferenceData\n  }\n}": typeof types.HeroBannerDataFragmentDoc,
     "fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}": typeof types.HeroBlockDataFragmentDoc,
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": typeof types.ImageElementDataFragmentDoc,
     "fragment LayoutSettingsBlockData on LayoutSettingsBlock {\n  mainMenu {\n    ...IContentListItem\n  }\n  contactInfoHeading\n  serviceButtons {\n    ...IContentListItem\n  }\n  contactInfo {\n    json\n    html\n  }\n  footerMenus {\n    ...IContentListItem\n  }\n  copyright\n  legalLinks {\n    ...LinkItemData\n  }\n  appIdentifiers\n}": typeof types.LayoutSettingsBlockDataFragmentDoc,
@@ -37,6 +38,7 @@ type Documents = {
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": typeof types.ParagraphElementDataFragmentDoc,
     "fragment QuoteBlockData on QuoteBlock {\n  quote: QuoteText\n  color: QuoteColor\n  active: QuoteActive\n  name: QuoteProfileName\n  profilePicture: QuoteProfilePicture {\n    ...ReferenceData\n  }\n  location: QuoteProfileLocation\n}": typeof types.QuoteBlockDataFragmentDoc,
     "fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}": typeof types.RichTextElementDataFragmentDoc,
+    "fragment TeaserBlockData on TeaserBlock {\n  heading\n  shortDescription: description\n  image {\n    ...ReferenceData\n  }\n  link {\n    ...LinkData\n  }\n}": typeof types.TeaserBlockDataFragmentDoc,
     "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}": typeof types.TestimonialElementDataFragmentDoc,
     "fragment TextBlockData on TextBlock {\n  overline: TextBlockOverline\n  headingSize: TextBlockHeadingSize\n  heading: TextBlockHeading\n  description: TextBlockDescription {\n    json\n    html\n  }\n  center: TextCenter\n  width: TextBlockWidth\n  className: TextClassName\n}": typeof types.TextBlockDataFragmentDoc,
     "fragment VideoElementData on VideoElement {\n  title\n  video {\n    ...ReferenceData\n  }\n  placeholder {\n    ...ReferenceData\n  }\n}": typeof types.VideoElementDataFragmentDoc,
@@ -50,6 +52,7 @@ type Documents = {
     "query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales!]) {\n  BlogPostPage(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    pages: items {\n      cms: _metadata {\n        title: displayName\n        published\n        url {\n          base\n          default\n        }\n      }\n      title: Heading\n      author: ArticleAuthor\n      image: BlogPostPromoImage {\n        ...ReferenceData\n      }\n      topics: Topic\n      seo: SeoSettings {\n        title: MetaTitle\n        description: MetaDescription\n        keywords: MetaKeywords\n        image: SharingImage {\n          ...ReferenceData\n        }\n        type: GraphType\n      }\n    }\n  }\n}": typeof types.getBlogPostPageMetaDataDocument,
     "fragment BlogPostPageData on BlogPostPage {\n  blogTitle: Heading\n  blogSubtitle: ArticleSubHeading\n  blogImage: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  blogBody: BlogPostBody {\n    json\n  }\n  blogAuthor: ArticleAuthor\n  blogTopics: Topic\n  continueReading {\n    ...IContentListItem\n    ...BlockData\n  }\n}": typeof types.BlogPostPageDataFragmentDoc,
     "fragment BlogPostPageSearchResult on BlogPostPage {\n  title: Heading\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  author: ArticleAuthor\n  seodata: SeoSettings {\n    MetaTitle\n    MetaDescription\n  }\n  _metadata {\n    published\n  }\n}": typeof types.BlogPostPageSearchResultFragmentDoc,
+    "fragment HomePageData on HomePage {\n  Title\n  MainContentArea {\n    ...BlockData\n  }\n}": typeof types.HomePageDataFragmentDoc,
     "query getLandingPageMetaData($key: String!, $version: String, $locale: [Locales]) {\n  LandingPage(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    pages: items {\n      _metadata {\n        displayName\n        key\n        version\n        locale\n        url {\n          base\n        }\n      }\n      SeoSettings {\n        MetaTitle\n        MetaDescription\n        SharingImage {\n          ...ReferenceData\n        }\n        GraphType\n      }\n    }\n  }\n}": typeof types.getLandingPageMetaDataDocument,
     "fragment LandingPageData on LandingPage {\n  TopContentArea {\n    ...BlockData\n  }\n  MainContentArea {\n    ...BlockData\n  }\n}": typeof types.LandingPageDataFragmentDoc,
     "fragment BlankSectionData on BlankSection {\n  _metadata {\n    key\n  }\n}": typeof types.BlankSectionDataFragmentDoc,
@@ -74,6 +77,7 @@ const documents: Documents = {
     "fragment ContinueReadingComponentData on ContinueReadingComponent {\n  topline\n  shared\n  heading\n  content {\n    ...IContentData\n    ...BlockData\n  }\n}": types.ContinueReadingComponentDataFragmentDoc,
     "query getSharedContinueReading($locale: [Locales]) {\n  ContinueReadingComponent(where: {shared: {eq: true}}, locale: $locale) {\n    total\n    item {\n      ...IContentData\n      ...ContinueReadingComponentData\n    }\n  }\n}": types.getSharedContinueReadingDocument,
     "fragment HeadingElementData on HeadingElement {\n  headingText\n}": types.HeadingElementDataFragmentDoc,
+    "fragment HeroBannerData on HeroBanner {\n  Title\n  ShortDescription\n  Image {\n    ...ReferenceData\n  }\n}": types.HeroBannerDataFragmentDoc,
     "fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}": types.HeroBlockDataFragmentDoc,
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": types.ImageElementDataFragmentDoc,
     "fragment LayoutSettingsBlockData on LayoutSettingsBlock {\n  mainMenu {\n    ...IContentListItem\n  }\n  contactInfoHeading\n  serviceButtons {\n    ...IContentListItem\n  }\n  contactInfo {\n    json\n    html\n  }\n  footerMenus {\n    ...IContentListItem\n  }\n  copyright\n  legalLinks {\n    ...LinkItemData\n  }\n  appIdentifiers\n}": types.LayoutSettingsBlockDataFragmentDoc,
@@ -86,6 +90,7 @@ const documents: Documents = {
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": types.ParagraphElementDataFragmentDoc,
     "fragment QuoteBlockData on QuoteBlock {\n  quote: QuoteText\n  color: QuoteColor\n  active: QuoteActive\n  name: QuoteProfileName\n  profilePicture: QuoteProfilePicture {\n    ...ReferenceData\n  }\n  location: QuoteProfileLocation\n}": types.QuoteBlockDataFragmentDoc,
     "fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}": types.RichTextElementDataFragmentDoc,
+    "fragment TeaserBlockData on TeaserBlock {\n  heading\n  shortDescription: description\n  image {\n    ...ReferenceData\n  }\n  link {\n    ...LinkData\n  }\n}": types.TeaserBlockDataFragmentDoc,
     "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}": types.TestimonialElementDataFragmentDoc,
     "fragment TextBlockData on TextBlock {\n  overline: TextBlockOverline\n  headingSize: TextBlockHeadingSize\n  heading: TextBlockHeading\n  description: TextBlockDescription {\n    json\n    html\n  }\n  center: TextCenter\n  width: TextBlockWidth\n  className: TextClassName\n}": types.TextBlockDataFragmentDoc,
     "fragment VideoElementData on VideoElement {\n  title\n  video {\n    ...ReferenceData\n  }\n  placeholder {\n    ...ReferenceData\n  }\n}": types.VideoElementDataFragmentDoc,
@@ -99,6 +104,7 @@ const documents: Documents = {
     "query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales!]) {\n  BlogPostPage(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    pages: items {\n      cms: _metadata {\n        title: displayName\n        published\n        url {\n          base\n          default\n        }\n      }\n      title: Heading\n      author: ArticleAuthor\n      image: BlogPostPromoImage {\n        ...ReferenceData\n      }\n      topics: Topic\n      seo: SeoSettings {\n        title: MetaTitle\n        description: MetaDescription\n        keywords: MetaKeywords\n        image: SharingImage {\n          ...ReferenceData\n        }\n        type: GraphType\n      }\n    }\n  }\n}": types.getBlogPostPageMetaDataDocument,
     "fragment BlogPostPageData on BlogPostPage {\n  blogTitle: Heading\n  blogSubtitle: ArticleSubHeading\n  blogImage: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  blogBody: BlogPostBody {\n    json\n  }\n  blogAuthor: ArticleAuthor\n  blogTopics: Topic\n  continueReading {\n    ...IContentListItem\n    ...BlockData\n  }\n}": types.BlogPostPageDataFragmentDoc,
     "fragment BlogPostPageSearchResult on BlogPostPage {\n  title: Heading\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  author: ArticleAuthor\n  seodata: SeoSettings {\n    MetaTitle\n    MetaDescription\n  }\n  _metadata {\n    published\n  }\n}": types.BlogPostPageSearchResultFragmentDoc,
+    "fragment HomePageData on HomePage {\n  Title\n  MainContentArea {\n    ...BlockData\n  }\n}": types.HomePageDataFragmentDoc,
     "query getLandingPageMetaData($key: String!, $version: String, $locale: [Locales]) {\n  LandingPage(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    pages: items {\n      _metadata {\n        displayName\n        key\n        version\n        locale\n        url {\n          base\n        }\n      }\n      SeoSettings {\n        MetaTitle\n        MetaDescription\n        SharingImage {\n          ...ReferenceData\n        }\n        GraphType\n      }\n    }\n  }\n}": types.getLandingPageMetaDataDocument,
     "fragment LandingPageData on LandingPage {\n  TopContentArea {\n    ...BlockData\n  }\n  MainContentArea {\n    ...BlockData\n  }\n}": types.LandingPageDataFragmentDoc,
     "fragment BlankSectionData on BlankSection {\n  _metadata {\n    key\n  }\n}": types.BlankSectionDataFragmentDoc,
@@ -173,6 +179,10 @@ export function gql(source: "fragment HeadingElementData on HeadingElement {\n  
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "fragment HeroBannerData on HeroBanner {\n  Title\n  ShortDescription\n  Image {\n    ...ReferenceData\n  }\n}"): (typeof documents)["fragment HeroBannerData on HeroBanner {\n  Title\n  ShortDescription\n  Image {\n    ...ReferenceData\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}"): (typeof documents)["fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -218,6 +228,10 @@ export function gql(source: "fragment QuoteBlockData on QuoteBlock {\n  quote: Q
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}"): (typeof documents)["fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment TeaserBlockData on TeaserBlock {\n  heading\n  shortDescription: description\n  image {\n    ...ReferenceData\n  }\n  link {\n    ...LinkData\n  }\n}"): (typeof documents)["fragment TeaserBlockData on TeaserBlock {\n  heading\n  shortDescription: description\n  image {\n    ...ReferenceData\n  }\n  link {\n    ...LinkData\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -270,6 +284,10 @@ export function gql(source: "fragment BlogPostPageData on BlogPostPage {\n  blog
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "fragment BlogPostPageSearchResult on BlogPostPage {\n  title: Heading\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  author: ArticleAuthor\n  seodata: SeoSettings {\n    MetaTitle\n    MetaDescription\n  }\n  _metadata {\n    published\n  }\n}"): (typeof documents)["fragment BlogPostPageSearchResult on BlogPostPage {\n  title: Heading\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  author: ArticleAuthor\n  seodata: SeoSettings {\n    MetaTitle\n    MetaDescription\n  }\n  _metadata {\n    published\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment HomePageData on HomePage {\n  Title\n  MainContentArea {\n    ...BlockData\n  }\n}"): (typeof documents)["fragment HomePageData on HomePage {\n  Title\n  MainContentArea {\n    ...BlockData\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

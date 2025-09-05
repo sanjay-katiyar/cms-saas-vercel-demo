@@ -141,6 +141,15 @@ export const HeadingElementDataFragmentDoc = gql`
   headingText
 }
     `;
+export const HeroBannerDataFragmentDoc = gql`
+    fragment HeroBannerData on HeroBanner {
+  Title
+  ShortDescription
+  Image {
+    ...ReferenceData
+  }
+}
+    `;
 export const ButtonBlockPropertyDataFragmentDoc = gql`
     fragment ButtonBlockPropertyData on ButtonBlockProperty {
   children: ButtonText
@@ -309,6 +318,18 @@ export const RichTextElementDataFragmentDoc = gql`
   }
 }
     `;
+export const TeaserBlockDataFragmentDoc = gql`
+    fragment TeaserBlockData on TeaserBlock {
+  heading
+  shortDescription: description
+  image {
+    ...ReferenceData
+  }
+  link {
+    ...LinkData
+  }
+}
+    `;
 export const TestimonialElementDataFragmentDoc = gql`
     fragment TestimonialElementData on TestimonialElement {
   customerName
@@ -369,6 +390,7 @@ export const ContinueReadingComponentDataFragmentDoc = gql`
     ...ContentRecsElementData
     ...ContinueReadingComponentData
     ...HeadingElementData
+    ...HeroBannerData
     ...HeroBlockData
     ...ImageElementData
     ...LayoutSettingsBlockData
@@ -379,6 +401,7 @@ export const ContinueReadingComponentDataFragmentDoc = gql`
     ...ParagraphElementData
     ...QuoteBlockData
     ...RichTextElementData
+    ...TeaserBlockData
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
@@ -400,6 +423,7 @@ export const CarouselBlockDataFragmentDoc = gql`
     ...ContentRecsElementData
     ...ContinueReadingComponentData
     ...HeadingElementData
+    ...HeroBannerData
     ...HeroBlockData
     ...ImageElementData
     ...LayoutSettingsBlockData
@@ -410,6 +434,7 @@ export const CarouselBlockDataFragmentDoc = gql`
     ...ParagraphElementData
     ...QuoteBlockData
     ...RichTextElementData
+    ...TeaserBlockData
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
@@ -429,6 +454,7 @@ export const CompositionComponentNodeDataFragmentDoc = gql`
     ...ContentRecsElementData
     ...ContinueReadingComponentData
     ...HeadingElementData
+    ...HeroBannerData
     ...HeroBlockData
     ...ImageElementData
     ...LayoutSettingsBlockData
@@ -439,6 +465,7 @@ export const CompositionComponentNodeDataFragmentDoc = gql`
     ...ParagraphElementData
     ...QuoteBlockData
     ...RichTextElementData
+    ...TeaserBlockData
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
@@ -510,6 +537,7 @@ export const BlogPostPageDataFragmentDoc = gql`
     ...ContentRecsElementData
     ...ContinueReadingComponentData
     ...HeadingElementData
+    ...HeroBannerData
     ...HeroBlockData
     ...ImageElementData
     ...LayoutSettingsBlockData
@@ -520,6 +548,7 @@ export const BlogPostPageDataFragmentDoc = gql`
     ...ParagraphElementData
     ...QuoteBlockData
     ...RichTextElementData
+    ...TeaserBlockData
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
@@ -543,6 +572,37 @@ export const BlogPostPageSearchResultFragmentDoc = gql`
   }
 }
     `;
+export const HomePageDataFragmentDoc = gql`
+    fragment HomePageData on HomePage {
+  Title
+  MainContentArea {
+    ...BlockData
+    ...ArticleListElementData
+    ...ButtonBlockData
+    ...CTAElementData
+    ...CarouselBlockData
+    ...ContentRecsElementData
+    ...ContinueReadingComponentData
+    ...HeadingElementData
+    ...HeroBannerData
+    ...HeroBlockData
+    ...ImageElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TeaserBlockData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...BlankSectionData
+  }
+}
+    `;
 export const LandingPageDataFragmentDoc = gql`
     fragment LandingPageData on LandingPage {
   TopContentArea {
@@ -554,6 +614,7 @@ export const LandingPageDataFragmentDoc = gql`
     ...ContentRecsElementData
     ...ContinueReadingComponentData
     ...HeadingElementData
+    ...HeroBannerData
     ...HeroBlockData
     ...ImageElementData
     ...LayoutSettingsBlockData
@@ -564,6 +625,7 @@ export const LandingPageDataFragmentDoc = gql`
     ...ParagraphElementData
     ...QuoteBlockData
     ...RichTextElementData
+    ...TeaserBlockData
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
@@ -578,6 +640,7 @@ export const LandingPageDataFragmentDoc = gql`
     ...ContentRecsElementData
     ...ContinueReadingComponentData
     ...HeadingElementData
+    ...HeroBannerData
     ...HeroBlockData
     ...ImageElementData
     ...LayoutSettingsBlockData
@@ -588,6 +651,7 @@ export const LandingPageDataFragmentDoc = gql`
     ...ParagraphElementData
     ...QuoteBlockData
     ...RichTextElementData
+    ...TeaserBlockData
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
@@ -678,8 +742,9 @@ ${ImageMediaComponentDataFragmentDoc}
 ${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
-${HeroBlockDataFragmentDoc}
+${HeroBannerDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
+${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
 ${LayoutSettingsBlockDataFragmentDoc}
@@ -692,6 +757,7 @@ ${PageSeoSettingsDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${RichTextElementDataFragmentDoc}
+${TeaserBlockDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
@@ -1086,6 +1152,7 @@ export const getContentByIdDocument = gql`
       ...ContentRecsElementData
       ...ContinueReadingComponentData
       ...HeadingElementData
+      ...HeroBannerData
       ...HeroBlockData
       ...ImageElementData
       ...LayoutSettingsBlockData
@@ -1096,6 +1163,7 @@ export const getContentByIdDocument = gql`
       ...ParagraphElementData
       ...QuoteBlockData
       ...RichTextElementData
+      ...TeaserBlockData
       ...TestimonialElementData
       ...TextBlockData
       ...VideoElementData
@@ -1103,6 +1171,7 @@ export const getContentByIdDocument = gql`
       ...BlankExperienceData
       ...BlogSectionExperienceData
       ...BlogPostPageData
+      ...HomePageData
       ...LandingPageData
     }
   }
@@ -1122,8 +1191,9 @@ ${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
 ${ContinueReadingComponentDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
-${HeroBlockDataFragmentDoc}
+${HeroBannerDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
+${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
 ${LayoutSettingsBlockDataFragmentDoc}
@@ -1136,6 +1206,7 @@ ${PageSeoSettingsDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${RichTextElementDataFragmentDoc}
+${TeaserBlockDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
@@ -1149,6 +1220,7 @@ ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
 ${BlogSectionExperienceDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
+${HomePageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}`;
 export const getContentByPathDocument = gql`
     query getContentByPath($path: [String!]!, $locale: [Locales!], $siteId: String, $changeset: String = null) {
@@ -1163,6 +1235,7 @@ export const getContentByPathDocument = gql`
       ...BlankExperienceData
       ...BlogSectionExperienceData
       ...BlogPostPageData
+      ...HomePageData
       ...LandingPageData
     }
   }
@@ -1190,6 +1263,7 @@ ${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
 ${ContinueReadingComponentDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
+${HeroBannerDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
@@ -1203,12 +1277,14 @@ ${PageSeoSettingsDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${RichTextElementDataFragmentDoc}
+${TeaserBlockDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
 ${BlankSectionDataFragmentDoc}
 ${BlogSectionExperienceDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
+${HomePageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}`;
 export const getContentTypeDocument = gql`
     query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String = "-", $domain: String) {

@@ -1,0 +1,41 @@
+{
+  "key": "HomePage",
+  "displayName": "Home Page",
+  "description": "The site start/home page",
+  "baseType": "page",
+  "sortOrder": 0,
+  "mayContainTypes": [
+    "*"
+  ],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "Title": {
+      "type": "string",
+      "displayName": "Title",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "MainContentArea": {
+      "type": "array",
+      "displayName": "Main Content Area",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "TeaserBlock"
+        ],
+        "restrictedTypes": []
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+fragment HeroBannerData on HeroBanner {
+  Title
+  ShortDescription
+  Image { ...ReferenceData }
+}

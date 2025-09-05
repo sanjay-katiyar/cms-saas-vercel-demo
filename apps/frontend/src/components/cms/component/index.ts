@@ -4,6 +4,7 @@ import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import VideoElementComponent from "./VideoElement";
 import TextBlockComponent from "./TextBlock";
 import TestimonialElementComponent from "./TestimonialElement";
+import TeaserBlockComponent from "./TeaserBlock";
 import RichTextElementComponent from "./RichTextElement";
 import QuoteBlockComponent from "./QuoteBlock";
 import ParagraphElementComponent from "./ParagraphElement";
@@ -15,6 +16,7 @@ import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
 import LayoutSettingsBlockComponent from "./LayoutSettingsBlock";
 import ImageElementComponent from "./ImageElement";
 import HeroBlockComponent from "./HeroBlock";
+import HeroBannerComponent from "./HeroBanner";
 import HeadingElementComponent from "./HeadingElement";
 import CTAElementComponent from "./CTAElement";
 import ContinueReadingComponentComponent from "./ContinueReadingComponent";
@@ -41,6 +43,10 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "TestimonialElement", 
         component: TestimonialElementComponent 
+    },
+    { 
+        type: "TeaserBlock", 
+        component: TeaserBlockComponent 
     },
     { 
         type: "RichTextElement", 
@@ -85,6 +91,10 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "HeroBlock", 
         component: HeroBlockComponent 
+    },
+    { 
+        type: "HeroBanner", 
+        component: HeroBannerComponent 
     },
     { 
         type: "HeadingElement", 

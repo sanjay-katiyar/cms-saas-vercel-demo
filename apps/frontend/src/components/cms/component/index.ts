@@ -4,6 +4,7 @@ import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import VideoElementComponent from "./VideoElement";
 import TextBlockComponent from "./TextBlock";
 import TestimonialElementComponent from "./TestimonialElement";
+import TeaserBlockComponent from "./TeaserBlock";
 import RichTextElementComponent from "./RichTextElement";
 import QuoteBlockComponent from "./QuoteBlock";
 import ParagraphElementComponent from "./ParagraphElement";
@@ -15,6 +16,7 @@ import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
 import LayoutSettingsBlockComponent from "./LayoutSettingsBlock";
 import ImageElementComponent from "./ImageElement";
 import HeroBlockComponent from "./HeroBlock";
+import HeroBannerComponent from "./HeroBanner";
 import HeadingElementComponent from "./HeadingElement";
 import CTAElementComponent from "./CTAElement";
 import ContinueReadingComponentComponent from "./ContinueReadingComponent";
@@ -24,99 +26,102 @@ import ButtonBlockComponent from "./ButtonBlock";
 import ArticleListElementComponent from "./ArticleListElement";
 import ArticleListElementLoader from "./ArticleListElement/loading";
 import ComponentPageFactory from "./Page";
-import TeaserBlockComponent from "./TeaserBlock";
 
 // Prefix entries - if needed
 prefixDictionaryEntries(ComponentPageFactory, "Page");
 
 // Build dictionary
-export const ComponentFactory: ComponentTypeDictionary = [
-    {
-        type: "VideoElement",
-        component: VideoElementComponent
+export const ComponentFactory : ComponentTypeDictionary = [
+    { 
+        type: "VideoElement", 
+        component: VideoElementComponent 
     },
-    {
-        type: "TextBlock",
-        component: TextBlockComponent
+    { 
+        type: "TextBlock", 
+        component: TextBlockComponent 
     },
-    {
-        type: "TestimonialElement",
-        component: TestimonialElementComponent
+    { 
+        type: "TestimonialElement", 
+        component: TestimonialElementComponent 
     },
-    {
-        type: "RichTextElement",
-        component: RichTextElementComponent
+    { 
+        type: "TeaserBlock", 
+        component: TeaserBlockComponent 
     },
-    {
-        type: "QuoteBlock",
-        component: QuoteBlockComponent
+    { 
+        type: "RichTextElement", 
+        component: RichTextElementComponent 
     },
-    {
-        type: "ParagraphElement",
-        component: ParagraphElementComponent
+    { 
+        type: "QuoteBlock", 
+        component: QuoteBlockComponent 
     },
-    {
-        type: "PageSeoSettings",
-        component: PageSeoSettingsComponent
+    { 
+        type: "ParagraphElement", 
+        component: ParagraphElementComponent 
     },
-    {
-        type: "OdpEmbedBlock",
-        component: OdpEmbedBlockComponent
+    { 
+        type: "PageSeoSettings", 
+        component: PageSeoSettingsComponent 
     },
-    {
-        type: "MenuNavigationBlock",
-        component: MenuNavigationBlockComponent
+    { 
+        type: "OdpEmbedBlock", 
+        component: OdpEmbedBlockComponent 
     },
-    {
-        type: "MegaMenuGroupBlock/mobile",
-        component: MegaMenuGroupBlockMobileComponent
+    { 
+        type: "MenuNavigationBlock", 
+        component: MenuNavigationBlockComponent 
     },
-    {
-        type: "MegaMenuGroupBlock",
-        component: MegaMenuGroupBlockComponent
+    { 
+        type: "MegaMenuGroupBlock/mobile", 
+        component: MegaMenuGroupBlockMobileComponent 
     },
-    {
-        type: "LayoutSettingsBlock",
-        component: LayoutSettingsBlockComponent
+    { 
+        type: "MegaMenuGroupBlock", 
+        component: MegaMenuGroupBlockComponent 
     },
-    {
-        type: "ImageElement",
-        component: ImageElementComponent
+    { 
+        type: "LayoutSettingsBlock", 
+        component: LayoutSettingsBlockComponent 
     },
-    {
-        type: "HeroBlock",
-        component: HeroBlockComponent
+    { 
+        type: "ImageElement", 
+        component: ImageElementComponent 
     },
-    {
-        type: "HeadingElement",
-        component: HeadingElementComponent
+    { 
+        type: "HeroBlock", 
+        component: HeroBlockComponent 
     },
-    {
-        type: "CTAElement",
-        component: CTAElementComponent
+    { 
+        type: "HeroBanner", 
+        component: HeroBannerComponent 
     },
-    {
-        type: "ContinueReadingComponent",
-        component: ContinueReadingComponentComponent
+    { 
+        type: "HeadingElement", 
+        component: HeadingElementComponent 
     },
-    {
-        type: "ContentRecsElement",
-        component: ContentRecsElementComponent
+    { 
+        type: "CTAElement", 
+        component: CTAElementComponent 
     },
-    {
-        type: "CarouselBlock",
-        component: CarouselBlockComponent
+    { 
+        type: "ContinueReadingComponent", 
+        component: ContinueReadingComponentComponent 
     },
-    {
-        type: "ButtonBlock",
-        component: ButtonBlockComponent
+    { 
+        type: "ContentRecsElement", 
+        component: ContentRecsElementComponent 
     },
-    {
-        type: "TeaserBlock",
-        component: TeaserBlockComponent
+    { 
+        type: "CarouselBlock", 
+        component: CarouselBlockComponent 
     },
-    {
-        type: "ArticleListElement",
+    { 
+        type: "ButtonBlock", 
+        component: ButtonBlockComponent 
+    },
+    { 
+        type: "ArticleListElement", 
         component: ArticleListElementComponent,
         useSuspense: true,
         loader: ArticleListElementLoader
@@ -128,9 +133,10 @@ export const ComponentFactory: ComponentTypeDictionary = [
 export default ComponentFactory;
 
 // Helper functions
-function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string): ComponentTypeDictionary {
+function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string) : ComponentTypeDictionary
+{
     list.forEach((component, idx, dictionary) => {
-        dictionary[idx].type = typeof component.type == 'string' ? prefix + "/" + component.type : [prefix, ...component.type]
+        dictionary[idx].type = typeof component.type == 'string' ? prefix + "/" + component.type : [ prefix, ...component.type ]
     });
     return list;
 }

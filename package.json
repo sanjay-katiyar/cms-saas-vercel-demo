@@ -47,6 +47,7 @@
     "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz"
   },
   "dependencies": {
+    "@remkoj/optimizely-cms-api": "^5.1.4",
     "@remkoj/optimizely-cms-cli": "^5.1.4"
   }
 }

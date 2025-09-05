@@ -3181,6 +3181,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remkoj/optimizely-cms-api@npm:^5.1.4":
+  version: 5.1.4
+  resolution: "@remkoj/optimizely-cms-api@npm:5.1.4"
+  checksum: 10c0/e69efa99202ab88cc6aa444891f1631dda5bd8400c8af0bc6363f01f43253f92292256ba5d00b77ed51d44bf6938a9cbcd656955720f8e6ab1af8ed49d510596
+  languageName: node
+  linkType: hard
+
 "@remkoj/optimizely-cms-cli@npm:^5.1.3":
   version: 5.1.3
   resolution: "@remkoj/optimizely-cms-cli@npm:5.1.3"
@@ -3263,6 +3270,7 @@ __metadata:
   resolution: "@remkoj/optimizely-frontend@workspace:."
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
+    "@remkoj/optimizely-cms-api": "npm:^5.1.4"
     "@remkoj/optimizely-cms-cli": "npm:^5.1.4"
     "@remkoj/optimizely-graph-client": "npm:^5.1.4"
     "@remkoj/optimizely-graph-functions": "npm:^5.1.3"

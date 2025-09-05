@@ -1,21 +1,61 @@
-import { type CmsComponent } from "@remkoj/optimizely-cms-react";
-import { TeaserBlockDataFragmentDoc, type TeaserBlockDataFragment } from "@/gql/graphql";
+import { CmsEditable, type CmsComponent } from "@remkoj/optimizely-cms-react/rsc";
+import { type TeaserBlockDataFragment, TeaserBlockDataFragmentDoc } from "@/gql/graphql";
 
-/**
- * Teaser Block
- * Block used for teasers with image, text and link
- */
-export const TeaserBlockComponent : CmsComponent<TeaserBlockDataFragment> = ({ data, children }) => {
-    const componentName = 'Teaser Block'
-    const componentInfo = 'Block used for teasers with image, text and link'
-    return <div className="w-full border-y border-y-solid border-y-slate-900 py-2 mb-4">
-        <div className="font-bold italic">{ componentName }</div>
-        <div>{ componentInfo }</div>
-        { Object.getOwnPropertyNames(data).length > 0 && <pre className="w-full overflow-x-hidden font-mono text-sm bg-slate-200 p-2 rounded-sm border border-solid border-slate-900 text-slate-900">{ JSON.stringify(data, undefined, 4) }</pre> }
-        { children && <div className="mt-4 mx-4 flex flex-col">{ children }</div>}
+export const TeaserBlockComponent: CmsComponent<TeaserBlockDataFragment> = ({
+    data: {
+        heading = "",
+        shortDescription = "",
+        image = null,
+        link = null,
+    } = {},
+    ctx,
+    contentLink,
+    inEditMode,
+}) => (
+    <div className="teaser-block p-6 rounded shadow bg-white">
+        <CmsEditable
+            as="h3"
+            cmsFieldName="heading"
+            className="text-xl font-semibold mb-2"
+            ctx={ctx}
+        >
+            {heading ?? ""}
+        </CmsEditable>
+        <CmsEditable
+            as="p"
+            cmsFieldName="Description"
+            ctx={ctx}
+        >
+            {shortDescription ?? ""}
+        </CmsEditable>
+        {image && (
+            <CmsEditable
+                as="img"
+                cmsFieldName="Image"
+                src={image.url.default || ""}
+                alt={heading || ""}
+                className="mb-4 w-full h-auto"
+                ctx={ctx}
+            />
+        )}
+        {link && (
+            <CmsEditable
+                as="a"
+                cmsFieldName="Link"
+                href={link.default || "#"}
+                className="text-blue-600 underline"
+                ctx={ctx}
+            >
+                {link.text || "Read more"}
+            </CmsEditable>
+        )}
     </div>
-}
-TeaserBlockComponent.displayName = "Teaser Block (Component/TeaserBlock)"
-TeaserBlockComponent.getDataFragment = () => ['TeaserBlockData', TeaserBlockDataFragmentDoc]
+);
 
-export default TeaserBlockComponent
+TeaserBlockComponent.displayName = "Teaser Block";
+TeaserBlockComponent.getDataFragment = () => [
+    "TeaserBlockData",
+    TeaserBlockDataFragmentDoc,
+];
+
+export default TeaserBlockComponent;

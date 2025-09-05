@@ -1,27 +1,41 @@
-import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
-import { HomePageDataFragmentDoc, type HomePageDataFragment } from "@/gql/graphql";
-import { getSdk } from "@/gql"
+import "server-only";
+import { CmsEditable, RichText, CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
+import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
+import { type HomePageDataFragment, HomePageDataFragmentDoc } from "@gql/graphql";
 
-/**
- * Home Page
- * The site start/home page
- */
-export const HomePagePage : CmsComponent<HomePageDataFragment> = ({ data, children }) => {
-    const componentName = 'Home Page'
-    const componentInfo = 'The site start/home page'
-    return <div className="mx-auto px-2 container">
-        <div className="font-bold italic">{ componentName }</div>
-        <div>{ componentInfo }</div>
-        { Object.getOwnPropertyNames(data).length > 0 && <pre className="w-full overflow-x-hidden font-mono text-sm bg-slate-200 p-2 rounded-sm border border-solid border-slate-900 text-slate-900">{ JSON.stringify(data, undefined, 4) }</pre> }
-        { children && <div className="flex flex-col mt-4 mx-4">{ children }</div>}
+export const HomePage: OptimizelyNextPage<HomePageDataFragment> = ({
+    contentLink,
+    inEditMode,
+    data: {
+        Title = "",
+        MainContentArea = [],
+    } = {},
+    ctx
+}) => (
+    <div className="outer-padding">
+        <section className="container mx-auto py-16">
+            <CmsEditable
+                as="h1"
+                cmsFieldName="Title"
+                className="text-5xl font-bold mb-4"
+                ctx={ctx}
+            >
+                {Title || "+ Add Heading"}
+            </CmsEditable>
+            <CmsContentArea
+                fieldName="MainContentArea"
+                items={MainContentArea ?? []}
+                className="grid gap-8 md:grid-cols-2"
+                ctx={ctx}
+            />
+        </section>
     </div>
-}
-HomePagePage.displayName = "Home Page (Page/HomePage)"
-HomePagePage.getDataFragment = () => ['HomePageData', HomePageDataFragmentDoc]
-HomePagePage.getMetaData = async (contentLink, locale, client) => {
-    const sdk = getSdk(client);
-    // Add your metadata logic here
-    return {}
-}
+);
 
-export default HomePagePage
+HomePage.displayName = "HomePage";
+HomePage.getDataFragment = () => [
+    "HomePageData",
+    HomePageDataFragmentDoc,
+];
+
+export default HomePage;
